@@ -1,3 +1,4 @@
+using AppDDD.DAL;
 using AppDDD.DAL.Context;
 
 using Microsoft.EntityFrameworkCore;
@@ -18,11 +19,19 @@ switch (connection_type)
         break;
 }
 
+services.AddTransient<AppDbInitializer>();
+
 services.AddControllers();
 services.AddEndpointsApiExplorer();
 services.AddSwaggerGen();
 
 var app = builder.Build();
+
+using (var scope = app.Services.CreateScope())
+{
+    var initializer = scope.ServiceProvider.GetRequiredService<AppDbInitializer>();
+    await initializer.InitializeAsync(RemoveBefore: true);
+}
 
 if (app.Environment.IsDevelopment())
 {
