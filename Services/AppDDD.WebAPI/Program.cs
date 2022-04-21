@@ -1,6 +1,7 @@
 using AppDDD.DAL;
 using AppDDD.DAL.Context;
-
+using AppDDD.DAL.Repositories;
+using AppDDD.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -20,6 +21,7 @@ switch (connection_type)
 }
 
 services.AddTransient<AppDbInitializer>();
+services.AddScoped(typeof(IRepositoryAsync<>), typeof(EntityRepository<>));
 
 services.AddControllers();
 services.AddEndpointsApiExplorer();

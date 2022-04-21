@@ -8,7 +8,7 @@ namespace AppDDD.DAL.Repositories;
 
 public class EntityRepository<T> : IRepositoryAsync<T> where T : class, IEntity
 {
-    private readonly AppDB _db;
+    protected readonly AppDB _db;
     private readonly ILogger<EntityRepository<T>> _Logger;
 
     public EntityRepository(AppDB db, ILogger<EntityRepository<T>> Logger)
