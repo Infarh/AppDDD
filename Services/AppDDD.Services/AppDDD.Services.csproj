@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\AppDDD.Interfaces\AppDDD.Interfaces.csproj" />
+  </ItemGroup>
+
 </Project>

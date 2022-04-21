@@ -7,4 +7,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\Services\AppDDD.Services\AppDDD.Services.csproj" />
+    <ProjectReference Include="..\..\Services\AppDDD.WebAPI.Clients\AppDDD.WebAPI.Clients.csproj" />
+  </ItemGroup>
+
 </Project>
