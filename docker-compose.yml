@@ -1,0 +1,22 @@
+version: '3.4'
+
+services:
+  db:
+    container_name: MSSQL
+    image: "mcr.microsoft.com/mssql/server:2019-latest"
+
+  appdddapi:
+    image: ${DOCKER_REGISTRY-}appdddapi
+    depends_on:
+      - db
+    build:
+      context: .
+      dockerfile: Services/AppDDD.WebAPI/Dockerfile
+
+  appdddmvc:
+    image: ${DOCKER_REGISTRY-}appdddmvc
+    depends_on:
+      - appdddapi
+    build:
+      context: .
+      dockerfile: UI/AppDDD.MVC/Dockerfile

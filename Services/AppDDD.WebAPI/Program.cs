@@ -12,6 +12,7 @@ var connection_string = builder.Configuration.GetConnectionString(connection_typ
 
 switch (connection_type)
 {
+    case "DockerDB":
     case "SqlServer":
         services.AddDbContext<AppDB>(opt => opt.UseSqlServer(connection_string, o => o.MigrationsAssembly("AppDDD.DAL.MSSQLServer")));
         break;
@@ -41,7 +42,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 
 app.UseAuthorization();
 

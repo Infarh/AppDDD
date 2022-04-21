@@ -1,0 +1,28 @@
+version: '3.4'
+
+services:
+  db:
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=yourStrong1_2Password
+      - MSSQL_PID=Express
+
+  appdddapi:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=https://+:443;http://+:80
+      - Database=DockerDB
+    ports:
+      - "8080:80"
+
+  appdddmvc:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=https://+:443;http://+:80
+      - WebAPI=http://appdddapi
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
