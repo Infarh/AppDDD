@@ -30,7 +30,7 @@ var app = builder.Build();
 using (var scope = app.Services.CreateScope())
 {
     var initializer = scope.ServiceProvider.GetRequiredService<AppDbInitializer>();
-    await initializer.InitializeAsync(RemoveBefore: true);
+    await initializer.InitializeAsync(RemoveBefore: false);
 }
 
 if (app.Environment.IsDevelopment())
